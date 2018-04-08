@@ -29,6 +29,8 @@ final class UserController : RouteCollection {
         let tokenAuthMiddleware = User.tokenAuthMiddleware()
         let tokenGroup = usersRouter.grouped(tokenAuthMiddleware)
         tokenGroup.get("posts", use: handleUserPosts)
+        
+        
         // users/:id/posts
     }
     

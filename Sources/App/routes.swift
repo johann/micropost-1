@@ -9,5 +9,8 @@ public func routes(_ router: Router) throws {
     let userController = UserController()
     try router.register(collection: userController)
     try router.register(collection: postController)
-    
+   
+    router.get("test") { req in
+        return "hello world"
+    }
 }
