@@ -13,7 +13,7 @@ public func configure(
     _ services: inout Services
 ) throws {
     // Register providers first
-//    try services.register(FluentMySQLProvider())
+    try services.register(FluentMySQLProvider())
     try services.register(LeafProvider())
     try services.register(AuthenticationProvider())
     config.prefer(LeafRenderer.self, for: TemplateRenderer.self)
@@ -30,11 +30,27 @@ public func configure(
     middlewares.use(DateMiddleware.self) // Adds `Date` header to responses
     middlewares.use(ErrorMiddleware.self) // Catches errors and converts to HTTP response
     services.register(middlewares)
+    var databases = DatabaseConfig()
+    
+    if env.isRelease {
+        let db = MySQLDatabase(databaseURL: Environment.get("JAWSDB_URL")!)
+        try databases.add(database: db!, as: .mysql)
+        services.register(databases)
+        
+    }
+    
+    var migrations = MigrationConfig()
+    migrations.add(model: Post.self, database: .mysql)
+    migrations.add(model: User.self, database: .mysql)
+    migrations.add(model: Token.self, database: .mysql)
+    services.register(migrations)
+    User.PublicUser.defaultDatabase = .mysql
+    
 
     
 //    let directoryConfig = DirectoryConfig.detect()
 //    services.register(directoryConfig)
-//    
+//
     // Configure a SQLite database
 //    var databases = DatabaseConfig()
    
