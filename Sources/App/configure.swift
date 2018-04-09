@@ -37,17 +37,20 @@ public func configure(
     
     // Configure a SQLite database
     var databases = DatabaseConfig()
-    let db = MySQLDatabase(hostname: "localhost", user: "micro", password: "micro", database: "microposter")
-    try databases.add(database: db, as: .mysql)
-    services.register(databases)
+   
+//    let db = MySQLDatabase(hostname: "localhost", user: "micro", password: "micro", database: "microposter")
+//    let db = MySQLDatabase(hostname: "us-cdbr-iron-east-05.cleardb.net", user: "b4738a31b145b5", password: "266a33c7", database: "heroku_cbf849baf879924")
+//    let db = MySQLDatabase(databaseURL: "mysql://b4738a31b145b5:266a33c7@us-cdbr-iron-east-05.cleardb.net/heroku_cbf849baf879924?reconnect=true")
+//    try databases.add(database: db!, as: .mysql)
+//    services.register(databases)
 
     // Configure migrations
-    var migrations = MigrationConfig()
-    migrations.add(model: Post.self, database: .mysql)
-    migrations.add(model: User.self, database: .mysql)
-    migrations.add(model: Token.self, database: .mysql)
-    services.register(migrations)
-    User.PublicUser.defaultDatabase = .mysql
+//    var migrations = MigrationConfig()
+//    migrations.add(model: Post.self, database: .mysql)
+//    migrations.add(model: User.self, database: .mysql)
+//    migrations.add(model: Token.self, database: .mysql)
+//    services.register(migrations)
+//    User.PublicUser.defaultDatabase = .mysql
 
     // Configure the rest of your application here
 }
