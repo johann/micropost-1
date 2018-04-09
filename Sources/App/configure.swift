@@ -13,7 +13,7 @@ public func configure(
     _ services: inout Services
 ) throws {
     // Register providers first
-    try services.register(FluentMySQLProvider())
+//    try services.register(FluentMySQLProvider())
     try services.register(LeafProvider())
     try services.register(AuthenticationProvider())
     config.prefer(LeafRenderer.self, for: TemplateRenderer.self)
@@ -36,7 +36,7 @@ public func configure(
     services.register(directoryConfig)
     
     // Configure a SQLite database
-    var databases = DatabaseConfig()
+//    var databases = DatabaseConfig()
    
 //    let db = MySQLDatabase(hostname: "localhost", user: "micro", password: "micro", database: "microposter")
 //    let db = MySQLDatabase(hostname: "us-cdbr-iron-east-05.cleardb.net", user: "b4738a31b145b5", password: "266a33c7", database: "heroku_cbf849baf879924")
